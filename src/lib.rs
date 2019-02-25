@@ -258,7 +258,7 @@ impl Element {
 		self.write_with_config(w, EmitterConfig::new())
 	}
 
-	pub fn writewrite_element_only<W: Write>(&self, w: W) -> Result<(), Error> {
+	pub fn write_element_only<W: Write>(&self, w: W) -> Result<(), Error> {
 		self.write_element_only_with_config(w, EmitterConfig::new())
 	}
 
