@@ -258,33 +258,8 @@ impl Element {
 		self.write_with_config(w, EmitterConfig::new())
 	}
 
-	pub fn write_element_only<W: Write>(&self, w: W) -> Result<(), Error> {
-		self.write_element_only_with_config(
-			w,
-			EmitterConfig::new().write_document_declaration(false),
-		)
-	}
-
 	/// Writes out this element as the root element in a new XML document using the provided configuration
 	pub fn write_with_config<W: Write>(&self, w: W, config: EmitterConfig) -> Result<(), Error> {
-		use xml::common::XmlVersion;
-		use xml::writer::events::XmlEvent;
-		use xml::writer::EventWriter;
-
-		let mut emitter = EventWriter::new_with_config(w, config);
-		emitter.write(XmlEvent::StartDocument {
-			version: XmlVersion::Version10,
-			encoding: None,
-			standalone: None,
-		})?;
-		self._write(&mut emitter)
-	}
-
-	pub fn write_element_only_with_config<W: Write>(
-		&self,
-		w: W,
-		config: EmitterConfig,
-	) -> Result<(), Error> {
 		use xml::writer::EventWriter;
 
 		let mut emitter = EventWriter::new_with_config(w, config);
