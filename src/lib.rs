@@ -259,7 +259,10 @@ impl Element {
 	}
 
 	pub fn write_element_only<W: Write>(&self, w: W) -> Result<(), Error> {
-		self.write_element_only_with_config(w, EmitterConfig::new())
+		self.write_element_only_with_config(
+			w,
+			EmitterConfig::new().write_document_declaration(false),
+		)
 	}
 
 	/// Writes out this element as the root element in a new XML document using the provided configuration
